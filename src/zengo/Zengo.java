@@ -28,10 +28,20 @@ public class Zengo {
 		Assert.assertEquals(ExpectedTitle, title);
 	}
 	
+	public void clickOnEthereum() {
+		driver.manage().window().maximize();
+		WebElement assets = driver.findElement(By.id("menu-item-12609"));
+		Actions a = new Actions(driver);
+		a.moveToElement(assets).perform();
+		WebElement ethereum = driver.findElement(By.linkText("Ethereum (ETH)"));
+		a.moveToElement(ethereum).click().perform();
+	}
+
 		public static void main(String[] args) throws InterruptedException {
 		Zengo z1 = new Zengo();
 		z1.launchBrowser();
 		z1.testAssertLaunching();
+		z1.clickOnEthereum();
 	}
 
 
