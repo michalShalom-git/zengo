@@ -43,12 +43,19 @@ public class Zengo {
 		Assert.assertEquals(ExpectedUrl, url);
 	}
 	
+	@Test
+	public void testAssertLogo() throws InterruptedException {
+		Boolean logoDisplay = driver.findElement(By.xpath("//img[@alt=\"zengo logo\"]")).isDisplayed();
+		Assert.assertTrue(logoDisplay);
+	}
+	
 	public static void main(String[] args) throws InterruptedException {
 		Zengo z1 = new Zengo();
 		z1.launchBrowser();			//1
 		z1.testAssertLaunching();	//2
 		z1.clickOnEthereum();		//3
 		z1.testAssertEthereum();	//4
+		z1.testAssertLogo();		//5
 	}
 
 
