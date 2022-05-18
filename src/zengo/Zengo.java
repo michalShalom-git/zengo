@@ -12,8 +12,7 @@ public class Zengo {
 	WebDriver driver;
 
 	public Zengo() {
-		String path = System.setProperty("webdriver.chrome.driver", "C:\\chromeDriver\\chromeDriver.exe");
-		System.out.print(path);
+		System.setProperty("webdriver.chrome.driver", "C:\\chromeDriver\\chromeDriver.exe");
 		driver = new ChromeDriver();
 	}
 
@@ -27,7 +26,7 @@ public class Zengo {
 		String ExpectedTitle = "ZenGo - Simple & Secure Crypto Wallet App";
 		Assert.assertEquals(ExpectedTitle, title);
 	}
-	
+
 	public void clickOnEthereum() {
 		driver.manage().window().maximize();
 		WebElement assets = driver.findElement(By.id("menu-item-12609"));
@@ -37,11 +36,19 @@ public class Zengo {
 		a.moveToElement(ethereum).click().perform();
 	}
 
-		public static void main(String[] args) throws InterruptedException {
+	@Test
+	public void testAssertEthereum() throws InterruptedException {
+		String url = driver.getCurrentUrl();
+		String ExpectedUrl = "https://zengo.com/assets/ethereum-wallet/";
+		Assert.assertEquals(ExpectedUrl, url);
+	}
+	
+	public static void main(String[] args) throws InterruptedException {
 		Zengo z1 = new Zengo();
-		z1.launchBrowser();
-		z1.testAssertLaunching();
-		z1.clickOnEthereum();
+		z1.launchBrowser();			//1
+		z1.testAssertLaunching();	//2
+		z1.clickOnEthereum();		//3
+		z1.testAssertEthereum();	//4
 	}
 
 
